@@ -22,12 +22,11 @@ public class Win32Headless implements Headless {
 
   private final PROCESS_INFORMATION process;
 
-  public Win32Headless(String commandLine, Map<String, String> environment, int minumumWidth, int minimumHeight)
-      throws IOException {
+  public Win32Headless(String commandLine, Map<String, String> environment) throws IOException {
 
     final String HIDDEN_DESKTOP = "hidden";
 
-    offscreenDesktop = CreateDesktop(HIDDEN_DESKTOP, minumumWidth, minimumHeight);
+    offscreenDesktop = CreateDesktop(HIDDEN_DESKTOP);
 
     STARTUPINFO startupinfo = new STARTUPINFO();
     startupinfo.desktop = new LPSTR(HIDDEN_DESKTOP);

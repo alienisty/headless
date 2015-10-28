@@ -32,20 +32,16 @@ public interface Headless {
    * @param environment
    *          an optional environment to use with the process. If not specified, the environment is inherited from the
    *          calling process.
-   * @param minumumWidth
-   *          minimum desktop width in pixels
-   * @param maximumWidth
-   *          maximum desktop width in pixels
    *
    * @return an instance of the running headless process.
    * @throws IOException
    */
-  static Headless with(String commandLine, Map<String, String> environment, int minumumWidth, int minimumHeight)
+  static Headless with(String commandLine, Map<String, String> environment)
       throws IOException {
     Headless process;
     String os = System.getProperty("os.name");
     if (os.contains("Windows")) {
-      process = new Win32Headless(commandLine, environment, minumumWidth, minimumHeight);
+      process = new Win32Headless(commandLine, environment);
     } else {
       throw new UnsupportedOperationException("Unsupported OS " + os);
     }
